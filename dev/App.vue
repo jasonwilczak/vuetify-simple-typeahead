@@ -2,7 +2,10 @@
   <v-app>
     <vuetify-simple-typeahead
       ref="typeahead"
-      :developer="{'verboseLogging':'true','logger':myLogger}"
+      clearable
+      label="Search..."
+      :data="{dataSet:serverDataSet,itemDisplayProperty:'text',itemValueProperty:'code'}"
+      :developer="{'verboseLogging':'true','logger':myLogger}"      
       >      
     </vuetify-simple-typeahead>
   </v-app>
@@ -13,7 +16,16 @@
 export default {
   name: 'simpletypeahead-demo',
   data(){
-    return {}      
+    return {
+      serverDataSet: []
+    }      
+  },
+  mounted() {
+    this.serverDataSet = [
+      {'text':'hi1','code':'1'},
+      {'text':'hi2','code':'2'},
+      {'text':'hi3','code':'3'},
+    ]
   },
   methods: {
     myLogger(message) {

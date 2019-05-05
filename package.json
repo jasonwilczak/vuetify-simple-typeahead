@@ -1,6 +1,6 @@
 {
   "name": "vuetify-simple-typeahead",
-  "version": "0.0.1-alpha-0.1",
+  "version": "0.0.1-alpha-1.0",
   "description": "A simple typeahead component that uses Vue2+Vuetify to get you going quickly",
   "main": "dist/vuetify-simple-typeahead.cjs.js",
   "module": "dist/vuetify-simple-typeahead.es.js",

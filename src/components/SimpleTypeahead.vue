@@ -4,19 +4,15 @@
       :items="items"
       :loading="isLoading"
       :search-input.sync="search"
-      chips
-      clearable
-      hide-details
-      hide-selected
-      item-text="name"
-      item-value="value"
-      label="Search..."
+      :item-text="data.itemDisplayProperty || 'name'"
+      :item-value="data.itemValueProperty || 'value'"
       solo
+      v-bind="$attrs"
     >
       <template v-slot:no-data>
         <v-list-tile>
           <v-list-tile-title>
-            No data available...
+            {{data.noDataMessage ||'No data available...'}}
           </v-list-tile-title>
         </v-list-tile>
       </template>
@@ -52,7 +48,18 @@
 export default {
     name: 'vuetify-simple-typeahead',
     props: {      
-      dataSource: null,
+      data: {
+        type: Object,
+        default: () => {
+          return {
+            dataSource:null,
+            dataSet: [],
+            itemDisplayProperty: null,
+            itemValueProperty: null,
+            noDataMessage: null
+          }
+        }
+      },
       developer: {
         type: Object,
         default: () => {
@@ -75,7 +82,7 @@ export default {
         this.isLoading = true
         
         // Lazily load input items
-        if(this.dataSource) {
+        if(this.data.dataSource) {
         fetch('https://api.coinmarketcap.com/v2/listings/')
           .then(res => res.json())
           .then(res => {
@@ -86,13 +93,14 @@ export default {
           })
           .finally(() => (this.isLoading = false))
         } else {
-          this.items = [{name:'item 1',value:'1'}];
+          this.items = this.data.dataSet || [];
           this.isLoading = false;
         }
       }
     },
     mounted() {
       this.log('typeahead component mounted');
+      this.log(JSON.stringify(this.$props));
     },
     methods: {      
       log(message) {

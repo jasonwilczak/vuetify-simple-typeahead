@@ -9,13 +9,13 @@
       solo
       v-bind="$attrs"
     >
-      <template v-slot:no-data>
+      <!-- <template v-slot:no-data>
         <v-list-tile>
           <v-list-tile-title>
             {{data.noDataMessage ||'No data available...'}}
           </v-list-tile-title>
         </v-list-tile>
-      </template>
+      </template> -->
       <!-- <template v-slot:selection="data">
         <v-chip
           :selected="data.selected"

@@ -17,7 +17,10 @@ export default {
   name: 'simpletypeahead-demo',
   data(){
     return {
-      serverDataSet: []
+      serverDataSet: [
+        {'text':'hi1','code':'1'},
+      {'text':'hi2','code':'2'},
+      {'text':'hi3','code':'3'},]
     }      
   },
   mounted() {
